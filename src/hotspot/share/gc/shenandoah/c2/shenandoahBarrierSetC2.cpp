@@ -20,6 +20,8 @@
  * questions.
  *
  */
+ 
+#include "precompiled.hpp"
 
 #include "gc/shenandoah/shenandoahHeap.hpp"
 #include "gc/shenandoah/shenandoahHeuristics.hpp"
