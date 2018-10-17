@@ -166,15 +166,17 @@ define SetupBuildLauncherBody
   endif
 
   ifeq ($(USE_EXTERNAL_LIBZ), true)
-    $1_LIBS += -lz
+    #$1_LIBS += -lz
   endif
 
   ifeq ($$($1_WINDOWS_STATIC_LINK), true)
     $1_CFLAGS += $(filter-out -MD, $(CFLAGS_JDKEXE))
     $1_WINDOWS_JLI_LIB := $(SUPPORT_OUTPUTDIR)/native/java.base/jli_static.lib
+    $1_LIBS += $(LIBZ_LIBS_MT)
   else
     $1_CFLAGS += $(CFLAGS_JDKEXE)
     $1_WINDOWS_JLI_LIB := $(SUPPORT_OUTPUTDIR)/native/java.base/libjli/jli.lib
+    $1_LIBS += $(LIBZ_LIBS_MD)
   endif
 
   $$(eval $$(call SetupJdkExecutable, BUILD_LAUNCHER_$1, \
