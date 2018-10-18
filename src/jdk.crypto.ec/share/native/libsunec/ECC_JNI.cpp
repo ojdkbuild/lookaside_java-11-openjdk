@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2017, Oracle and/or its affiliates. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is free software; you can redistribute it and/or modify it
@@ -24,11 +24,7 @@
  */
 
 #include <jni.h>
-#include "jni_util.h"
-#include "impl/ecc_impl.h"
-#include "sun_security_ec_ECDHKeyAgreement.h"
-#include "sun_security_ec_ECKeyPairGenerator.h"
-#include "sun_security_ec_ECDSASignature.h"
+#include "ecc_impl.h"
 
 #define ILLEGAL_STATE_EXCEPTION "java/lang/IllegalStateException"
 #define INVALID_ALGORITHM_PARAMETER_EXCEPTION \
@@ -36,13 +32,19 @@
 #define INVALID_PARAMETER_EXCEPTION \
         "java/security/InvalidParameterException"
 #define KEY_EXCEPTION   "java/security/KeyException"
+#define INTERNAL_ERROR "java/lang/InternalError"
+
+#ifndef UNUSED
+#define UNUSED(x) x
+#endif
+
+#ifdef SYSTEM_NSS
+#define SYSTEM_UNUSED(x) UNUSED(x)
+#else
+#define SYSTEM_UNUSED(x) x
+#endif
 
 extern "C" {
-
-/*
- * Declare library specific JNI_Onload entry if static build
- */
-DEF_STATIC_JNI_OnLoad
 
 /*
  * Throws an arbitrary Java exception.
@@ -58,8 +60,13 @@ void ThrowException(JNIEnv *env, const char *exceptionName)
 /*
  * Deep free of the ECParams struct
  */
-void FreeECParams(ECParams *ecparams, jboolean freeStruct)
+void FreeECParams(ECParams *ecparams, jboolean SYSTEM_UNUSED(freeStruct))
 {
+#ifdef SYSTEM_NSS
+    // Needs to be freed using the matching method to the one
+    // that allocated it. PR_TRUE means the memory is zeroed.
+    PORT_FreeArena(ecparams->arena, PR_TRUE);
+#else
     // Use B_FALSE to free the SECItem->data element, but not the SECItem itself
     // Use B_TRUE to free both
 
@@ -73,6 +80,7 @@ void FreeECParams(ECParams *ecparams, jboolean freeStruct)
     SECITEM_FreeItem(&ecparams->curveOID, B_FALSE);
     if (freeStruct)
         free(ecparams);
+#endif
 }
 
 jbyteArray getEncodedBytes(JNIEnv *env, SECItem *hSECItem)
@@ -142,7 +150,7 @@ cleanup:
  */
 JNIEXPORT jobjectArray
 JNICALL Java_sun_security_ec_ECKeyPairGenerator_generateECKeyPair
-  (JNIEnv *env, jclass clazz, jint keySize, jbyteArray encodedParams, jbyteArray seed)
+  (JNIEnv *env, jclass UNUSED(clazz), jint UNUSED(keySize), jbyteArray encodedParams, jbyteArray seed)
 {
     ECPrivateKey *privKey = NULL; // contains both public and private values
     ECParams *ecparams = NULL;
@@ -174,8 +182,17 @@ JNICALL Java_sun_security_ec_ECKeyPairGenerator_generateECKeyPair
     env->GetByteArrayRegion(seed, 0, jSeedLength, pSeedBuffer);
 
     // Generate the new keypair (using the supplied seed)
+#ifdef SYSTEM_NSS
+    if (RNG_RandomUpdate((unsigned char *) pSeedBuffer, jSeedLength)
+        != SECSuccess) {
+        ThrowException(env, KEY_EXCEPTION);
+        goto cleanup;
+    }
+    if (EC_NewKey(ecparams, &privKey) != SECSuccess) {    
+#else    
     if (EC_NewKey(ecparams, &privKey, (unsigned char *) pSeedBuffer,
         jSeedLength, 0) != SECSuccess) {
+#endif
         ThrowException(env, KEY_EXCEPTION);
         goto cleanup;
     }
@@ -222,10 +239,15 @@ cleanup:
         }
         if (privKey) {
             FreeECParams(&privKey->ecParams, false);
+#ifndef SYSTEM_NSS
+	    // The entire ECPrivateKey is allocated in the arena
+	    // when using system NSS, so only the in-tree version
+	    // needs to clear these manually.
             SECITEM_FreeItem(&privKey->version, B_FALSE);
             SECITEM_FreeItem(&privKey->privateValue, B_FALSE);
             SECITEM_FreeItem(&privKey->publicValue, B_FALSE);
             free(privKey);
+#endif
         }
 
         if (pSeedBuffer) {
@@ -243,7 +265,7 @@ cleanup:
  */
 JNIEXPORT jbyteArray
 JNICALL Java_sun_security_ec_ECDSASignature_signDigest
-  (JNIEnv *env, jclass clazz, jbyteArray digest, jbyteArray privateKey, jbyteArray encodedParams, jbyteArray seed, jint timing)
+  (JNIEnv *env, jclass UNUSED(clazz), jbyteArray digest, jbyteArray privateKey, jbyteArray encodedParams, jbyteArray seed, jint timing)
 {
     jbyte* pDigestBuffer = NULL;
     jint jDigestLength = env->GetArrayLength(digest);
@@ -302,8 +324,18 @@ JNICALL Java_sun_security_ec_ECDSASignature_signDigest
     env->GetByteArrayRegion(seed, 0, jSeedLength, pSeedBuffer);
 
     // Sign the digest (using the supplied seed)
+#ifdef SYSTEM_NSS
+    if (RNG_RandomUpdate((unsigned char *) pSeedBuffer, jSeedLength)
+        != SECSuccess) {
+        ThrowException(env, KEY_EXCEPTION);
+        goto cleanup;
+    }
+    if (ECDSA_SignDigest(&privKey, &signature_item, &digest_item)
+        != SECSuccess) {    
+#else    
     if (ECDSA_SignDigest(&privKey, &signature_item, &digest_item,
         (unsigned char *) pSeedBuffer, jSeedLength, 0, timing) != SECSuccess) {
+#endif
         ThrowException(env, KEY_EXCEPTION);
         goto cleanup;
     }
@@ -352,7 +384,7 @@ cleanup:
  */
 JNIEXPORT jboolean
 JNICALL Java_sun_security_ec_ECDSASignature_verifySignedDigest
-  (JNIEnv *env, jclass clazz, jbyteArray signedDigest, jbyteArray digest, jbyteArray publicKey, jbyteArray encodedParams)
+  (JNIEnv *env, jclass UNUSED(clazz), jbyteArray signedDigest, jbyteArray digest, jbyteArray publicKey, jbyteArray encodedParams)
 {
     jboolean isValid = false;
 
@@ -409,9 +441,10 @@ JNICALL Java_sun_security_ec_ECDSASignature_verifySignedDigest
 
 cleanup:
     {
-        if (params_item.data)
+        if (params_item.data) {
             env->ReleaseByteArrayElements(encodedParams,
                 (jbyte *) params_item.data, JNI_ABORT);
+	}
 
         if (pubKey.publicValue.data)
             env->ReleaseByteArrayElements(publicKey,
@@ -437,7 +470,7 @@ cleanup:
  */
 JNIEXPORT jbyteArray
 JNICALL Java_sun_security_ec_ECDHKeyAgreement_deriveKey
-  (JNIEnv *env, jclass clazz, jbyteArray privateKey, jbyteArray publicKey, jbyteArray encodedParams)
+  (JNIEnv *env, jclass UNUSED(clazz), jbyteArray privateKey, jbyteArray publicKey, jbyteArray encodedParams)
 {
     jbyteArray jSecret = NULL;
     ECParams *ecparams = NULL;
@@ -513,15 +546,40 @@ cleanup:
             env->ReleaseByteArrayElements(publicKey,
                 (jbyte *) publicValue_item.data, JNI_ABORT);
 
-        if (params_item.data)
+        if (params_item.data) {
             env->ReleaseByteArrayElements(encodedParams,
                 (jbyte *) params_item.data, JNI_ABORT);
+	}
 
         if (ecparams)
             FreeECParams(ecparams, true);
     }
 
     return jSecret;
+}
+
+JNIEXPORT void
+JNICALL Java_sun_security_ec_SunEC_initialize
+  (JNIEnv *env, jclass UNUSED(clazz))
+{
+#ifdef SYSTEM_NSS
+    if (SECOID_Init() != SECSuccess) {
+        ThrowException(env, INTERNAL_ERROR);
+    }
+    if (RNG_RNGInit() != SECSuccess) {
+        ThrowException(env, INTERNAL_ERROR);
+    }
+#endif
+}
+
+JNIEXPORT void
+JNICALL JNI_OnUnload
+  (JavaVM *vm, void *reserved)
+{
+#ifdef SYSTEM_NSS
+    RNG_RNGShutdown();
+    SECOID_Shutdown();
+#endif
 }
 
 } /* extern "C" */

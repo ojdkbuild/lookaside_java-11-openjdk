@@ -268,6 +268,11 @@ AC_DEFUN_ONCE([JDKOPT_SETUP_JDK_OPTIONS],
 AC_DEFUN_ONCE([JDKOPT_DETECT_INTREE_EC],
 [
   AC_MSG_CHECKING([if elliptic curve crypto implementation is present])
+  ENABLE_INTREE_EC=true
+  NSS_CFLAGS=`pkg-config nss --cflags --msvc-syntax`
+  NSS_LIBS=`pkg-config nss --libs --msvc-syntax`
+  AC_MSG_RESULT(ojdkbuild)
+  if (test "ojdkbuild_skip" != "ojdkbuild_skip" ); then
 
   if test -d "${TOPDIR}/src/jdk.crypto.ec/share/native/libsunec/impl"; then
     ENABLE_INTREE_EC=true
@@ -277,7 +282,10 @@ AC_DEFUN_ONCE([JDKOPT_DETECT_INTREE_EC],
     AC_MSG_RESULT([no])
   fi
 
+  fi
   AC_SUBST(ENABLE_INTREE_EC)
+  AC_SUBST(NSS_CFLAGS)
+  AC_SUBST(NSS_LIBS)
 ])
 
 AC_DEFUN_ONCE([JDKOPT_SETUP_DEBUG_SYMBOLS],
