@@ -43,26 +43,20 @@ ifeq ($(TOOLCHAIN_TYPE), gcc)
   endif
 endif
 
-LIBJVM_FDLIBM_COPY_OPT_FLAG := $(CXX_O_FLAG_NONE)
-# If the FDLIBM_CFLAGS variable is non-empty we know
-# that the fdlibm-fork in hotspot can get optimized
-# by using -ffp-contract=off on GCC/Clang platforms.
-ifneq ($(FDLIBM_CFLAGS), )
-  LIBJVM_FDLIBM_COPY_OPT_FLAG := $(CXX_O_FLAG_NORM)
-endif
-
 ifeq ($(OPENJDK_TARGET_OS), linux)
   BUILD_LIBJVM_ostream.cpp_CXXFLAGS := -D_FILE_OFFSET_BITS=64
   BUILD_LIBJVM_logFileOutput.cpp_CXXFLAGS := -D_FILE_OFFSET_BITS=64
 
-  BUILD_LIBJVM_sharedRuntimeTrig.cpp_CXXFLAGS := -DNO_PCH $(FDLIBM_CFLAGS) $(LIBJVM_FDLIBM_COPY_OPT_FLAG)
-  BUILD_LIBJVM_sharedRuntimeTrans.cpp_CXXFLAGS := -DNO_PCH $(FDLIBM_CFLAGS) $(LIBJVM_FDLIBM_COPY_OPT_FLAG)
+  ifeq ($(OPENJDK_TARGET_CPU_ARCH), x86)
+    BUILD_LIBJVM_sharedRuntimeTrig.cpp_CXXFLAGS := -DNO_PCH $(CXX_O_FLAG_NONE)
+    BUILD_LIBJVM_sharedRuntimeTrans.cpp_CXXFLAGS := -DNO_PCH $(CXX_O_FLAG_NONE)
 
-  ifeq ($(TOOLCHAIN_TYPE), clang)
-    JVM_PRECOMPILED_HEADER_EXCLUDE := \
-       sharedRuntimeTrig.cpp \
-       sharedRuntimeTrans.cpp \
-       #
+    ifeq ($(TOOLCHAIN_TYPE), clang)
+      JVM_PRECOMPILED_HEADER_EXCLUDE := \
+          sharedRuntimeTrig.cpp \
+          sharedRuntimeTrans.cpp \
+          #
+    endif
   endif
 
   ifeq ($(OPENJDK_TARGET_CPU), x86)
