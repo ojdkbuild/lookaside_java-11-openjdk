@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Red Hat, Inc. and/or its affiliates.
+ * Copyright (c) 2015, 2018, Red Hat, Inc. All rights reserved.
  *
  * This code is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License version 2 only, as
@@ -25,8 +25,8 @@
 #define SHARE_VM_GC_SHENANDOAH_SHENANDOAHBARRIERSET_INLINE_HPP
 
 #include "gc/shared/barrierSet.hpp"
-#include "gc/shenandoah/brooksPointer.inline.hpp"
 #include "gc/shenandoah/shenandoahBarrierSet.hpp"
+#include "gc/shenandoah/shenandoahBrooksPointer.inline.hpp"
 #include "gc/shenandoah/shenandoahHeap.inline.hpp"
 
 bool ShenandoahBarrierSet::need_update_refs_barrier() {
@@ -36,7 +36,7 @@ bool ShenandoahBarrierSet::need_update_refs_barrier() {
 }
 
 inline oop ShenandoahBarrierSet::resolve_forwarded_not_null(oop p) {
-  return BrooksPointer::forwardee(p);
+  return ShenandoahBrooksPointer::forwardee(p);
 }
 
 inline oop ShenandoahBarrierSet::resolve_forwarded(oop p) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2015, Red Hat, Inc. and/or its affiliates.
+ * Copyright (c) 2013, 2018, Red Hat, Inc. All rights reserved.
  *
  * This code is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License version 2 only, as
@@ -278,12 +278,12 @@ public:
 
 template<>
 struct BarrierSet::GetName<ShenandoahBarrierSet> {
-  static const BarrierSet::Name value = BarrierSet::Shenandoah;
+  static const BarrierSet::Name value = BarrierSet::ShenandoahBarrierSet;
 };
 
 template<>
-struct BarrierSet::GetType<BarrierSet::Shenandoah> {
-  typedef ShenandoahBarrierSet type;
+struct BarrierSet::GetType<BarrierSet::ShenandoahBarrierSet> {
+  typedef ::ShenandoahBarrierSet type;
 };
 
 #endif //SHARE_VM_GC_SHENANDOAH_SHENANDOAHBARRIERSET_HPP
