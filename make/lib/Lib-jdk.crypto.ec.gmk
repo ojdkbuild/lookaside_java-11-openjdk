@@ -38,6 +38,11 @@ ifeq ($(ENABLE_INTREE_EC), true)
     BUILD_LIBSUNEC_CXXFLAGS_JDKLIB := $(CXXFLAGS_JDKLIB)
   endif
 
+  ifeq ($(USE_EXTERNAL_NSS), true)
+    BUILD_LIBSUNEC_CFLAGS_JDKLIB += $(NSS_CFLAGS) -DSYSTEM_NSS -DNSS_ENABLE_ECC
+    BUILD_LIBSUNEC_CXXFLAGS_JDKLIB += $(NSS_CFLAGS) -DSYSTEM_NSS -DNSS_ENABLE_ECC
+  endif
+
   $(eval $(call SetupJdkLibrary, BUILD_LIBSUNEC, \
       NAME := sunec, \
       TOOLCHAIN := TOOLCHAIN_LINK_CXX, \
@@ -47,9 +52,11 @@ ifeq ($(ENABLE_INTREE_EC), true)
       CXXFLAGS := $(BUILD_LIBSUNEC_CXXFLAGS_JDKLIB), \
       DISABLED_WARNINGS_gcc := sign-compare implicit-fallthrough, \
       DISABLED_WARNINGS_microsoft := 4101 4244 4146 4018, \
-      LDFLAGS := $(LDFLAGS_JDKLIB) $(LDFLAGS_CXX_JDK), \
+      LDFLAGS := $(subst -Xlinker --as-needed,, \
+                 $(subst -Wl$(COMMA)--as-needed,, $(LDFLAGS_JDKLIB))) $(LDFLAGS_CXX_JDK), \
       LDFLAGS_macosx := $(call SET_SHARED_LIBRARY_ORIGIN), \
       LIBS := $(LIBCXX), \
+      LIBS_linux := -lc $(NSS_LIBS), \
   ))
 
   TARGETS += $(BUILD_LIBSUNEC)
