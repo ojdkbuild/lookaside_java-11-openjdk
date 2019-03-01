@@ -14,3 +14,6 @@
 /make/data/tzdata/southamerica
 /make/data/tzdata/systemv
 /make/data/tzdata/zone.tab
+/src/java.base/windows/native/launcher/icons/awt.ico
+/src/java.desktop/share/classes/javax/swing/plaf/basic/icons/JavaCup16.png
+/src/java.desktop/windows/classes/com/sun/java/swing/plaf/windows/icons/JavaCup32.png
