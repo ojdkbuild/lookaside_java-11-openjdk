@@ -381,7 +381,8 @@ AC_DEFUN([TOOLCHAIN_SETUP_VISUAL_STUDIO_ENV],
       $ECHO "@echo off" >  $EXTRACT_VC_ENV_BAT_FILE
       # This will end up something like:
       # call C:/progra~2/micros~2.0/vc/bin/amd64/vcvars64.bat
-      $ECHO "call $WINPATH_VS_ENV_CMD $VS_ENV_ARGS" >> $EXTRACT_VC_ENV_BAT_FILE
+      # ojdkbuild: disable bat call that muddles the env
+      #$ECHO "call $WINPATH_VS_ENV_CMD $VS_ENV_ARGS" >> $EXTRACT_VC_ENV_BAT_FILE
       # In some cases, the VS_ENV_CMD will change directory, change back so
       # the set-vs-env.sh ends up in the right place.
       $ECHO 'cd %~dp0' >> $EXTRACT_VC_ENV_BAT_FILE
@@ -693,7 +694,7 @@ AC_DEFUN([TOOLCHAIN_SETUP_VS_RUNTIME_DLLS],
   if test "x$USE_UCRT" = "xtrue"; then
     AC_MSG_CHECKING([for UCRT DLL dir])
     if test "x$with_ucrt_dll_dir" != x; then
-      if test -z "$(ls -d "$with_ucrt_dll_dir/*.dll" 2> /dev/null)"; then
+      if test -z "$(ls -d $with_ucrt_dll_dir/*.dll 2> /dev/null)"; then
         AC_MSG_RESULT([no])
         AC_MSG_ERROR([Could not find any dlls in $with_ucrt_dll_dir])
       else
