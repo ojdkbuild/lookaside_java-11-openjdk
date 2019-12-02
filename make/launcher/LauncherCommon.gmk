@@ -149,10 +149,11 @@ define SetupBuildLauncherBody
   endif
 
   ifeq ($(USE_EXTERNAL_LIBZ), true)
-    $1_LIBS += -lz
+    #$1_LIBS += -lz
   endif
 
   $1_WINDOWS_JLI_LIB := $(call FindStaticLib, java.base, jli, /libjli)
+  $1_LIBS += $(LIBZ_LIBS)
 
   $$(eval $$(call SetupJdkExecutable, BUILD_LAUNCHER_$1, \
       NAME := $1, \
