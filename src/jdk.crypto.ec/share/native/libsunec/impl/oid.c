@@ -73,86 +73,12 @@
 /* NOTE: prime192v1 is the same as secp192r1, prime256v1 is the
  * same as secp256r1
  */
-CONST_OID ansiX962prime192v1[] = { ANSI_X962_GFp_OID, 0x01 };
-CONST_OID ansiX962prime192v2[] = { ANSI_X962_GFp_OID, 0x02 };
-CONST_OID ansiX962prime192v3[] = { ANSI_X962_GFp_OID, 0x03 };
-CONST_OID ansiX962prime239v1[] = { ANSI_X962_GFp_OID, 0x04 };
-CONST_OID ansiX962prime239v2[] = { ANSI_X962_GFp_OID, 0x05 };
-CONST_OID ansiX962prime239v3[] = { ANSI_X962_GFp_OID, 0x06 };
 CONST_OID ansiX962prime256v1[] = { ANSI_X962_GFp_OID, 0x07 };
 
 /* SECG prime curve OIDs */
-CONST_OID secgECsecp112r1[] = { SECG_OID, 0x06 };
-CONST_OID secgECsecp112r2[] = { SECG_OID, 0x07 };
-CONST_OID secgECsecp128r1[] = { SECG_OID, 0x1c };
-CONST_OID secgECsecp128r2[] = { SECG_OID, 0x1d };
-CONST_OID secgECsecp160k1[] = { SECG_OID, 0x09 };
-CONST_OID secgECsecp160r1[] = { SECG_OID, 0x08 };
-CONST_OID secgECsecp160r2[] = { SECG_OID, 0x1e };
-CONST_OID secgECsecp192k1[] = { SECG_OID, 0x1f };
-CONST_OID secgECsecp224k1[] = { SECG_OID, 0x20 };
-CONST_OID secgECsecp224r1[] = { SECG_OID, 0x21 };
 CONST_OID secgECsecp256k1[] = { SECG_OID, 0x0a };
 CONST_OID secgECsecp384r1[] = { SECG_OID, 0x22 };
 CONST_OID secgECsecp521r1[] = { SECG_OID, 0x23 };
-
-/* SECG characterisitic two curve OIDs */
-CONST_OID secgECsect113r1[] = {SECG_OID, 0x04 };
-CONST_OID secgECsect113r2[] = {SECG_OID, 0x05 };
-CONST_OID secgECsect131r1[] = {SECG_OID, 0x16 };
-CONST_OID secgECsect131r2[] = {SECG_OID, 0x17 };
-CONST_OID secgECsect163k1[] = {SECG_OID, 0x01 };
-CONST_OID secgECsect163r1[] = {SECG_OID, 0x02 };
-CONST_OID secgECsect163r2[] = {SECG_OID, 0x0f };
-CONST_OID secgECsect193r1[] = {SECG_OID, 0x18 };
-CONST_OID secgECsect193r2[] = {SECG_OID, 0x19 };
-CONST_OID secgECsect233k1[] = {SECG_OID, 0x1a };
-CONST_OID secgECsect233r1[] = {SECG_OID, 0x1b };
-CONST_OID secgECsect239k1[] = {SECG_OID, 0x03 };
-CONST_OID secgECsect283k1[] = {SECG_OID, 0x10 };
-CONST_OID secgECsect283r1[] = {SECG_OID, 0x11 };
-CONST_OID secgECsect409k1[] = {SECG_OID, 0x24 };
-CONST_OID secgECsect409r1[] = {SECG_OID, 0x25 };
-CONST_OID secgECsect571k1[] = {SECG_OID, 0x26 };
-CONST_OID secgECsect571r1[] = {SECG_OID, 0x27 };
-
-/* ANSI X9.62 characteristic two curve OIDs */
-CONST_OID ansiX962c2pnb163v1[] = { ANSI_X962_GF2m_OID, 0x01 };
-CONST_OID ansiX962c2pnb163v2[] = { ANSI_X962_GF2m_OID, 0x02 };
-CONST_OID ansiX962c2pnb163v3[] = { ANSI_X962_GF2m_OID, 0x03 };
-CONST_OID ansiX962c2pnb176v1[] = { ANSI_X962_GF2m_OID, 0x04 };
-CONST_OID ansiX962c2tnb191v1[] = { ANSI_X962_GF2m_OID, 0x05 };
-CONST_OID ansiX962c2tnb191v2[] = { ANSI_X962_GF2m_OID, 0x06 };
-CONST_OID ansiX962c2tnb191v3[] = { ANSI_X962_GF2m_OID, 0x07 };
-CONST_OID ansiX962c2onb191v4[] = { ANSI_X962_GF2m_OID, 0x08 };
-CONST_OID ansiX962c2onb191v5[] = { ANSI_X962_GF2m_OID, 0x09 };
-CONST_OID ansiX962c2pnb208w1[] = { ANSI_X962_GF2m_OID, 0x0a };
-CONST_OID ansiX962c2tnb239v1[] = { ANSI_X962_GF2m_OID, 0x0b };
-CONST_OID ansiX962c2tnb239v2[] = { ANSI_X962_GF2m_OID, 0x0c };
-CONST_OID ansiX962c2tnb239v3[] = { ANSI_X962_GF2m_OID, 0x0d };
-CONST_OID ansiX962c2onb239v4[] = { ANSI_X962_GF2m_OID, 0x0e };
-CONST_OID ansiX962c2onb239v5[] = { ANSI_X962_GF2m_OID, 0x0f };
-CONST_OID ansiX962c2pnb272w1[] = { ANSI_X962_GF2m_OID, 0x10 };
-CONST_OID ansiX962c2pnb304w1[] = { ANSI_X962_GF2m_OID, 0x11 };
-CONST_OID ansiX962c2tnb359v1[] = { ANSI_X962_GF2m_OID, 0x12 };
-CONST_OID ansiX962c2pnb368w1[] = { ANSI_X962_GF2m_OID, 0x13 };
-CONST_OID ansiX962c2tnb431r1[] = { ANSI_X962_GF2m_OID, 0x14 };
-
-/* TeleTrusT ECC Brainpool prime curve OIDs */
-CONST_OID brainpoolP160r1[] = { ECC_BRAINPOOL_EC_V1, 0x01 };
-CONST_OID brainpoolP160t1[] = { ECC_BRAINPOOL_EC_V1, 0x02 };
-CONST_OID brainpoolP192r1[] = { ECC_BRAINPOOL_EC_V1, 0x03 };
-CONST_OID brainpoolP192t1[] = { ECC_BRAINPOOL_EC_V1, 0x04 };
-CONST_OID brainpoolP224r1[] = { ECC_BRAINPOOL_EC_V1, 0x05 };
-CONST_OID brainpoolP224t1[] = { ECC_BRAINPOOL_EC_V1, 0x06 };
-CONST_OID brainpoolP256r1[] = { ECC_BRAINPOOL_EC_V1, 0x07 };
-CONST_OID brainpoolP256t1[] = { ECC_BRAINPOOL_EC_V1, 0x08 };
-CONST_OID brainpoolP320r1[] = { ECC_BRAINPOOL_EC_V1, 0x09 };
-CONST_OID brainpoolP320t1[] = { ECC_BRAINPOOL_EC_V1, 0x0a };
-CONST_OID brainpoolP384r1[] = { ECC_BRAINPOOL_EC_V1, 0x0b };
-CONST_OID brainpoolP384t1[] = { ECC_BRAINPOOL_EC_V1, 0x0c };
-CONST_OID brainpoolP512r1[] = { ECC_BRAINPOOL_EC_V1, 0x0d };
-CONST_OID brainpoolP512t1[] = { ECC_BRAINPOOL_EC_V1, 0x0e };
 
 #define OI(x) { siDEROID, (unsigned char *)x, sizeof x }
 #ifndef SECOID_NO_STRINGS
@@ -174,30 +100,18 @@ static SECOidData ANSI_prime_oids[] = {
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
 
-    OD( ansiX962prime192v1, ECCurve_NIST_P192,
-        "ANSI X9.62 elliptic curve prime192v1 (aka secp192r1, NIST P-192)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962prime192v2, ECCurve_X9_62_PRIME_192V2,
-        "ANSI X9.62 elliptic curve prime192v2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962prime192v3, ECCurve_X9_62_PRIME_192V3,
-        "ANSI X9.62 elliptic curve prime192v3",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962prime239v1, ECCurve_X9_62_PRIME_239V1,
-        "ANSI X9.62 elliptic curve prime239v1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962prime239v2, ECCurve_X9_62_PRIME_239V2,
-        "ANSI X9.62 elliptic curve prime239v2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962prime239v3, ECCurve_X9_62_PRIME_239V3,
-        "ANSI X9.62 elliptic curve prime239v3",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     OD( ansiX962prime256v1, ECCurve_NIST_P256,
         "ANSI X9.62 elliptic curve prime256v1 (aka secp256r1, NIST P-256)",
         CKM_INVALID_MECHANISM,
@@ -208,42 +122,24 @@ static SECOidData SECG_oids[] = {
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
 
-    OD( secgECsect163k1, ECCurve_NIST_K163,
-        "SECG elliptic curve sect163k1 (aka NIST K-163)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect163r1, ECCurve_SECG_CHAR2_163R1,
-        "SECG elliptic curve sect163r1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect239k1, ECCurve_SECG_CHAR2_239K1,
-        "SECG elliptic curve sect239k1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect113r1, ECCurve_SECG_CHAR2_113R1,
-        "SECG elliptic curve sect113r1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect113r2, ECCurve_SECG_CHAR2_113R2,
-        "SECG elliptic curve sect113r2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp112r1, ECCurve_SECG_PRIME_112R1,
-        "SECG elliptic curve secp112r1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp112r2, ECCurve_SECG_PRIME_112R2,
-        "SECG elliptic curve secp112r2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp160r1, ECCurve_SECG_PRIME_160R1,
-        "SECG elliptic curve secp160r1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp160k1, ECCurve_SECG_PRIME_160K1,
-        "SECG elliptic curve secp160k1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     OD( secgECsecp256k1, ECCurve_SECG_PRIME_256K1,
         "SECG elliptic curve secp256k1",
         CKM_INVALID_MECHANISM,
@@ -256,18 +152,6 @@ static SECOidData SECG_oids[] = {
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
-    OD( secgECsect163r2, ECCurve_NIST_B163,
-        "SECG elliptic curve sect163r2 (aka NIST B-163)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect283k1, ECCurve_NIST_K283,
-        "SECG elliptic curve sect283k1 (aka NIST K-283)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect283r1, ECCurve_NIST_B283,
-        "SECG elliptic curve sect283r1 (aka NIST B-283)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     { { siDEROID, NULL, 0 }, ECCurve_noName,
@@ -276,54 +160,36 @@ static SECOidData SECG_oids[] = {
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
-    OD( secgECsect131r1, ECCurve_SECG_CHAR2_131R1,
-        "SECG elliptic curve sect131r1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect131r2, ECCurve_SECG_CHAR2_131R2,
-        "SECG elliptic curve sect131r2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect193r1, ECCurve_SECG_CHAR2_193R1,
-        "SECG elliptic curve sect193r1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect193r2, ECCurve_SECG_CHAR2_193R2,
-        "SECG elliptic curve sect193r2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect233k1, ECCurve_NIST_K233,
-        "SECG elliptic curve sect233k1 (aka NIST K-233)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect233r1, ECCurve_NIST_B233,
-        "SECG elliptic curve sect233r1 (aka NIST B-233)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp128r1, ECCurve_SECG_PRIME_128R1,
-        "SECG elliptic curve secp128r1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp128r2, ECCurve_SECG_PRIME_128R2,
-        "SECG elliptic curve secp128r2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp160r2, ECCurve_SECG_PRIME_160R2,
-        "SECG elliptic curve secp160r2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp192k1, ECCurve_SECG_PRIME_192K1,
-        "SECG elliptic curve secp192k1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp224k1, ECCurve_SECG_PRIME_224K1,
-        "SECG elliptic curve secp224k1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsecp224r1, ECCurve_NIST_P224,
-        "SECG elliptic curve secp224r1 (aka NIST P-224)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     OD( secgECsecp384r1, ECCurve_NIST_P384,
         "SECG elliptic curve secp384r1 (aka NIST P-384)",
         CKM_INVALID_MECHANISM,
@@ -332,22 +198,14 @@ static SECOidData SECG_oids[] = {
         "SECG elliptic curve secp521r1 (aka NIST P-521)",
         CKM_INVALID_MECHANISM,
         INVALID_CERT_EXTENSION ),
-    OD( secgECsect409k1, ECCurve_NIST_K409,
-        "SECG elliptic curve sect409k1 (aka NIST K-409)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect409r1, ECCurve_NIST_B409,
-        "SECG elliptic curve sect409r1 (aka NIST B-409)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect571k1, ECCurve_NIST_K571,
-        "SECG elliptic curve sect571k1 (aka NIST K-571)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( secgECsect571r1, ECCurve_NIST_B571,
-        "SECG elliptic curve sect571r1 (aka NIST B-571)",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION )
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION }
 };
 
 static SECOidData ANSI_oids[] = {
@@ -355,78 +213,46 @@ static SECOidData ANSI_oids[] = {
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
 
     /* ANSI X9.62 named elliptic curves (characteristic two field) */
-    OD( ansiX962c2pnb163v1, ECCurve_X9_62_CHAR2_PNB163V1,
-        "ANSI X9.62 elliptic curve c2pnb163v1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2pnb163v2, ECCurve_X9_62_CHAR2_PNB163V2,
-        "ANSI X9.62 elliptic curve c2pnb163v2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2pnb163v3, ECCurve_X9_62_CHAR2_PNB163V3,
-        "ANSI X9.62 elliptic curve c2pnb163v3",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2pnb176v1, ECCurve_X9_62_CHAR2_PNB176V1,
-        "ANSI X9.62 elliptic curve c2pnb176v1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2tnb191v1, ECCurve_X9_62_CHAR2_TNB191V1,
-        "ANSI X9.62 elliptic curve c2tnb191v1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2tnb191v2, ECCurve_X9_62_CHAR2_TNB191V2,
-        "ANSI X9.62 elliptic curve c2tnb191v2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2tnb191v3, ECCurve_X9_62_CHAR2_TNB191V3,
-        "ANSI X9.62 elliptic curve c2tnb191v3",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
-    OD( ansiX962c2pnb208w1, ECCurve_X9_62_CHAR2_PNB208W1,
-        "ANSI X9.62 elliptic curve c2pnb208w1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2tnb239v1, ECCurve_X9_62_CHAR2_TNB239V1,
-        "ANSI X9.62 elliptic curve c2tnb239v1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2tnb239v2, ECCurve_X9_62_CHAR2_TNB239V2,
-        "ANSI X9.62 elliptic curve c2tnb239v2",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2tnb239v3, ECCurve_X9_62_CHAR2_TNB239V3,
-        "ANSI X9.62 elliptic curve c2tnb239v3",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
-    OD( ansiX962c2pnb272w1, ECCurve_X9_62_CHAR2_PNB272W1,
-        "ANSI X9.62 elliptic curve c2pnb272w1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2pnb304w1, ECCurve_X9_62_CHAR2_PNB304W1,
-        "ANSI X9.62 elliptic curve c2pnb304w1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2tnb359v1, ECCurve_X9_62_CHAR2_TNB359V1,
-        "ANSI X9.62 elliptic curve c2tnb359v1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2pnb368w1, ECCurve_X9_62_CHAR2_PNB368W1,
-        "ANSI X9.62 elliptic curve c2pnb368w1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
-    OD( ansiX962c2tnb431r1, ECCurve_X9_62_CHAR2_TNB431R1,
-        "ANSI X9.62 elliptic curve c2tnb431r1",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION )
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
+    { { siDEROID, NULL, 0 }, ECCurve_noName,
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION }
 };
 
 static SECOidData BRAINPOOL_oids[] = {
@@ -446,31 +272,14 @@ static SECOidData BRAINPOOL_oids[] = {
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
-    OD( brainpoolP256r1, ECCurve_BrainpoolP256r1,
-        "brainpoolP256r1 domain parameter set",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
-    OD( brainpoolP320r1, ECCurve_BrainpoolP320r1,
-        "brainpoolP320r1 domain parameter set",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
-    OD( brainpoolP384r1, ECCurve_BrainpoolP384r1,
-        "brainpoolP384r1 domain parameter set",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
     { { siDEROID, NULL, 0 }, ECCurve_noName,
         "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION },
-    OD( brainpoolP512r1, ECCurve_BrainpoolP512r1,
-        "brainpoolP512r1 domain parameter set",
-        CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION ),
     { { siDEROID, NULL, 0 }, ECCurve_noName,
-        "Unknown OID", CKM_INVALID_MECHANISM,
-        INVALID_CERT_EXTENSION }
+        "Unknown OID", CKM_INVALID_MECHANISM, INVALID_CERT_EXTENSION }
 };
 
 int
